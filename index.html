@@ -704,7 +704,7 @@
 
 					<div class="col-md-6 wow bounceInRight">
 
-						<form id="contact-form" role="form">
+						<!-- <form id="contact-form" role="form">
 
 							<div class="form-group">
 								<label class="sr-only" for="c_name">Name</label>
@@ -724,7 +724,41 @@
 								<i class="fa fa-bullhorn icon-before"></i> Send it
 							</button>
 
-						</form>
+						</form> -->
+
+						<script src="http://maps.googleapis.com/maps/api/js"></script>
+
+						<script>
+							var myCenter=new google.maps.LatLng(42.343410, -71.088986);
+							var marker;
+
+							function initialize()
+							{
+								var mapProp = {
+  								center:myCenter,
+  								zoom:5,
+  								mapTypeId:google.maps.MapTypeId.ROADMAP
+  							};
+
+								var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+								var marker=new google.maps.Marker({
+  								position:myCenter,
+  								animation:google.maps.Animation.BOUNCE
+									
+  							});
+
+							marker.setMap(map);
+							google.maps.event.addListener(marker,'click',function() {
+  							map.setZoom(9);
+  							map.setCenter(marker.getPosition());
+  						});
+						}
+
+						google.maps.event.addDomListener(window, 'load', initialize);
+					</script>
+
+					<div id="googleMap" style="width:500px;height:380px;"></div>
 
 						<div class="ajax-response"></div>
 
