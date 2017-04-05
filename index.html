@@ -751,38 +751,18 @@
 							</button>
 
 						</form> -->
-
-						<script src="http://maps.googleapis.com/maps/api/js"></script>
-
 						<script>
-							var myCenter=new google.maps.LatLng(42.343410, -71.088986);
-							var marker;
+							function myMap() {
+  								var myCenter = new google.maps.LatLng(42.343410,-71.088986);
+  								var mapCanvas = document.getElementById("map");
+  								var mapOptions = {center: myCenter, zoom: 5};
+  								var map = new google.maps.Map(mapCanvas, mapOptions);
+  								var marker = new google.maps.Marker({position:myCenter});
+  								marker.setMap(map);
+							}
+						</script>
 
-							function initialize()
-							{
-								var mapProp = {
-  								center:myCenter,
-  								zoom:5,
-  								mapTypeId:google.maps.MapTypeId.ROADMAP
-  							};
-
-								var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-								var marker=new google.maps.Marker({
-  								position:myCenter,
-  								animation:google.maps.Animation.BOUNCE
-
-  							});
-
-							marker.setMap(map);
-							google.maps.event.addListener(marker,'click',function() {
-  							map.setZoom(9);
-  							map.setCenter(marker.getPosition());
-  						});
-						}
-
-						google.maps.event.addDomListener(window, 'load', initialize);
-					</script>
+						<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUg-RtAQraUrNDZXyU8tUkha-qMUFhxnY&callback=myMap"></script>
 
 					<div id="googleMap" style="width:500px;height:380px;"></div>
 
